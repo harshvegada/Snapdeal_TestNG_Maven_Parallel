@@ -11,22 +11,22 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.annotations.ITestAnnotation;
+import base.PredefinedActions;
 
-import com.beust.jcommander.Strings;
+import com.google.common.base.Strings;
 
 import io.qameta.allure.Attachment;
-import testScripts.TestBase;
 
 public class TestNGListeners extends PredefinedActions implements ITestListener, IAnnotationTransformer {
 
 	public static String defaultBrowser = "Chrome";
 	public static String defaultenvironment = "QA";
 	public static String browserName = System.getProperty("browser");
-	public static String environmentName = System.getProperty("environment");
+	public static String environmentName = System.getProperty("env");
 
 	@Override
 	public void onTestStart(ITestResult result) {
-		createBrowser(TestBase.browserName);
+		createBrowser(TestNGListeners.browserName);
 		System.out.println("browser open code");
 	}
 
@@ -63,10 +63,10 @@ public class TestNGListeners extends PredefinedActions implements ITestListener,
 
 	@Override
 	public void onStart(ITestContext context) {
-		TestBase.browserName = (Strings.isStringEmpty(browserName)) ? TestBase.defaultBrowser
+		TestNGListeners.browserName = (Strings.isNullOrEmpty(browserName)) ? TestNGListeners.defaultBrowser
 				: System.getProperty("browser");
-		TestBase.environmentName = (Strings.isStringEmpty(environmentName)) ? TestBase.defaultenvironment
-				: System.getProperty("environment");
+		TestNGListeners.environmentName = (Strings.isNullOrEmpty(environmentName)) ? TestNGListeners.defaultenvironment
+				: System.getProperty("env");
 		System.out.println("Browser : " + browserName);
 		System.out.println("Environment : " + environmentName);
 	}
