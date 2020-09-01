@@ -20,7 +20,12 @@ public class TestBase extends TestNGListeners {
 
 	@DataProvider(name = "testData")
 	public Object[][] getDataSuppiler() {
-		return null;
+		Object[][] data = new Object[2][2];
+		data[0][0] = "maulik";
+		data[0][1] = "kanani";
+		data[1][0] = "krishna";
+		data[1][1] = "kanani";
+		return data;
 	}
 
 	@BeforeSuite

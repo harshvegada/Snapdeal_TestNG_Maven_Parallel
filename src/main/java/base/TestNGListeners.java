@@ -11,9 +11,6 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.annotations.ITestAnnotation;
-import base.PredefinedActions;
-
-import com.google.common.base.Strings;
 
 import io.qameta.allure.Attachment;
 
@@ -64,10 +61,11 @@ public class TestNGListeners extends PredefinedActions implements ITestListener,
 	@Override
 	public void onStart(ITestContext context) {
 		System.out.println("----------------------in context ------------------------------");
-		TestNGListeners.browserName = (Strings.isNullOrEmpty(browserName)) ? TestNGListeners.defaultBrowser
+		TestNGListeners.browserName = (browserName.contains("$")) ? TestNGListeners.defaultBrowser
 				: System.getProperty("browser");
-		TestNGListeners.environmentName = (Strings.isNullOrEmpty(environmentName)) ? TestNGListeners.defaultenvironment
+		TestNGListeners.environmentName = (environmentName.contains("$")) ? TestNGListeners.defaultenvironment
 				: System.getProperty("env");
+		
 		System.out.println("Browser : " + browserName);
 		System.out.println("Environment : " + environmentName);
 	}
