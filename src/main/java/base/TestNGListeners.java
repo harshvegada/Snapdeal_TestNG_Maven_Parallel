@@ -63,6 +63,7 @@ public class TestNGListeners extends PredefinedActions implements ITestListener,
 
 	@Override
 	public void onStart(ITestContext context) {
+		System.out.println("----------------------in context ------------------------------");
 		TestNGListeners.browserName = (Strings.isNullOrEmpty(browserName)) ? TestNGListeners.defaultBrowser
 				: System.getProperty("browser");
 		TestNGListeners.environmentName = (Strings.isNullOrEmpty(environmentName)) ? TestNGListeners.defaultenvironment
